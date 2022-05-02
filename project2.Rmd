@@ -1,25 +1,29 @@
 ---
-title: Is Jayson Tatum the Best Player from the 2017 NBA Draft?
+title: Is Jayson Tatum the best player from the 2017 NBA Draft?
 author: Kaden Ross
 date: '2022-05-01'
 slug: the-rookie-phenom-jayson-tatum
 categories: []
 tags: []
 ---
-  
+There is no question that the 2017 NBA draft class has given us some true superstars to watch in the league. Guys such as Jayson Tatum, Donovan Mitchell, and Bam Adebayo have solidified there status as stars in the NBA. This draft class has also produced a lot of well-rounded role players such as John Collins, Kyle Kuzma, and Lonzo Ball that every team would love to have on their roster. Then there are the guys that have not proved themselves in the league yet like Markelle Fultz, Jonathan Isaac. All of these guys are so young still and have a lot of years left to elevate their game, but who has proven to be the best player from this draft so far in the last 5 years?
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(ggbeeswarm)
 library(gt)
 ```
-
+Every player has a different role depending on what team they are on. Obviosuly, the most important part about the game of basketball is putting the ball in the basket so lets look at who has done that the best over their career thus far. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 allData <- read_csv("2017NBA.csv")
 fiveHighPoints <- allData %>% arrange(desc(PTS))
 fiveHighPoints <- slice_head(fiveHighPoints, n = 5)
 ggplot() + geom_bar(data=fiveHighPoints, aes(x=reorder(Player, PTS), weight=PTS), fill = "white")+theme_dark()+
-  labs(x="Total Points", y="Player", title="Who scores the basketball the best?", subtitle="Donovan Mitchell and Jayson Tatum have showcased their special ability to score at such a young age.", caption="Source: Sports Reference | By Kaden Ross") 
+  labs(x="Player", y="Total Points", title="Who scores the basketball the best?", subtitle="Donovan Mitchell and Jayson Tatum have showcased their special ability to score at such a young age.", caption="Source: Sports Reference | By Kaden Ross") 
 ```
+Donovan Mitchell and Jayson Tatum sit at number 1 and number 2 in total points scored in their career. It is very interesting to see De'Aaron Fox at third considering he does not get the recognition like Tatum and Mitchell do, but this is probably because he plays for the Kings and are a very small market team. Tatum and Mitchell have also increased their points per game average every year with Mitchell averaging 26.4 points per game, and Tatum is averaging 26.9 points per game this year. It is also very interesting to notice that Bam Adebayo did not crack the top 5 in total points but he is considered a star on the Heat because of his role that he plays for the Miami Heat.
+
+
+The only thing a team cares about is winning. That is what every player should care about when stepping on the court is to do whatever they can to help their team win. Win shares and win shares per 48 minutes are two of the most important stats to look at in basketball and really showcase who the best players are. It is basically a statistic that divides the credit for the teams success to the indiviual players on that team. For example, Kareem Abdul-Jabbar is the all time record older for 273.4 win shares throughout his career. The all time record older for win shares per 48 minutes is none other than Michael Jordan who is considered the greatest player of all time and shows how impactful he was in helping his team win big games. Lets take a look at who sits at the top out of the 2017 draft class.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 jarret <- allData %>% filter(Player == "Jarrett Allen")
 jayson <- allData %>% filter(Player == "Jayson Tatum")
@@ -30,6 +34,11 @@ ggplot() +
   geom_text(data =labedPlayers, aes(x=WS, y=WS_PER_48, label=Player), color="black") +
   labs(x="Win Shares", y="Win Shares per 48 minutes", title="Who has made the biggest impact in their teams wins from the 2017 NBA draft?", subtitle="Jarrett Allen's defensive skillset has him at the top of the chart.", caption="Source: Sports Reference | By Kaden Ross")
 ```
+
+Wow, very surprising that Jarrett Allen leads this class of players in win shares, right? Jarrett Allen is by no means considered a star in the NBA but he is very solid player with high potential that just got his first All-star game selection this year. He is so high in win shares because he is one of the top defensive players in the entire NBA, and helps the Cavaliers win games on the defensive end and with his rebounding ability. Jayson Tatum is not that far behind Allen in win shares per 48 minutes and is right there with him in total win shares. Tatum mainly helps his team win by scoring the ball, but he has grown into a playmaker now too, especially in this season.
+
+
+Another great statistic to look at that has great power his a players VORP. VORP is the value over replacement player and is the box score estimate of the points per 100 possessions that a player contributed to in an 82 game season. For example, if a player has a VORP of 10, then that player is making a 10-point difference for their team almost every game. The all-time leader in VORP is Lebron James at 142.60 and he is also in the argument for the best player of all time. Lets look at who has the highest VORP out of the 2017 draft class. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 VORPhigh <- allData %>% arrange(desc(VORP))
 VORPhigh <- slice_head(VORPhigh, n = 10)
@@ -42,7 +51,7 @@ VORPhigh %>%
   ) %>%
   tab_header(
     title = "Who has the best Plus/Minus out of this draft class?",
-    subtitle = "The leaue average for value over replacement is -2."
+    subtitle = "VORP is calculated per 100 possessions."
   ) %>% tab_style(
     style = cell_text(color = "Black", weight = "bold", align = "left"),
     locations = cells_title("title")
@@ -54,3 +63,8 @@ VORPhigh %>%
     source_note = md("**By:** Kaden Ross  |  **Source:** Sports Reference")
   )
 ```
+
+
+
+
+Surprised that Jayson Tatum leads this class with the highest VORP? Good, I'm not either. Jayson Tatum was basically given the reigns to the Celtics franchise in the last two years and he is now one of the best players in the NBA. From his multiple 50 point games to reaching the eastern conference finals in two out of the last four years, Tatum's skillset is only going to keep improving which is very scary for the rest of the NBA. He has proven himself to the rest of the world and everyone now knows what Jayson Tatum is capable of.

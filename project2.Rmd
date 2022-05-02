@@ -1,0 +1,56 @@
+---
+title: Is Jayson Tatum the Best Player from the 2017 NBA Draft?
+author: Kaden Ross
+date: '2022-05-01'
+slug: the-rookie-phenom-jayson-tatum
+categories: []
+tags: []
+---
+  
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggbeeswarm)
+library(gt)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+allData <- read_csv("2017NBA.csv")
+fiveHighPoints <- allData %>% arrange(desc(PTS))
+fiveHighPoints <- slice_head(fiveHighPoints, n = 5)
+ggplot() + geom_bar(data=fiveHighPoints, aes(x=reorder(Player, PTS), weight=PTS), fill = "white")+theme_dark()+
+  labs(x="Total Points", y="Player", title="Who scores the basketball the best?", subtitle="Donovan Mitchell and Jayson Tatum have showcased their special ability to score at such a young age.", caption="Source: Sports Reference | By Kaden Ross") 
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+jarret <- allData %>% filter(Player == "Jarrett Allen")
+jayson <- allData %>% filter(Player == "Jayson Tatum")
+labedPlayers <- rbind2(jarret, jayson)
+ggplot() + 
+  geom_point(data=allData, aes(x=WS, y=WS_PER_48)) +
+  geom_smooth(data=allData, aes(x=WS, y=WS_PER_48), method="lm") +
+  geom_text(data =labedPlayers, aes(x=WS, y=WS_PER_48, label=Player), color="black") +
+  labs(x="Win Shares", y="Win Shares per 48 minutes", title="Who has made the biggest impact in their teams wins from the 2017 NBA draft?", subtitle="Jarrett Allen's defensive skillset has him at the top of the chart.", caption="Source: Sports Reference | By Kaden Ross")
+```
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+VORPhigh <- allData %>% arrange(desc(VORP))
+VORPhigh <- slice_head(VORPhigh, n = 10)
+VORPhigh %>% 
+  select(Player, VORP) %>% 
+  gt() %>% 
+  cols_label(
+    Player = "Player",
+    VORP = "VORP"
+  ) %>%
+  tab_header(
+    title = "Who has the best Plus/Minus out of this draft class?",
+    subtitle = "The leaue average for value over replacement is -2."
+  ) %>% tab_style(
+    style = cell_text(color = "Black", weight = "bold", align = "left"),
+    locations = cells_title("title")
+  ) %>% tab_style(
+    style = cell_text(color = "red", align = "left"),
+    locations = cells_title("subtitle")
+  )  %>%
+  tab_source_note(
+    source_note = md("**By:** Kaden Ross  |  **Source:** Sports Reference")
+  )
+```

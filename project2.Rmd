@@ -68,3 +68,5 @@ VORPhigh %>%
 
 
 Surprised that Jayson Tatum leads this class with the highest VORP? Good, I'm not either. Jayson Tatum was basically given the reigns to the Celtics franchise in the last two years and he is now one of the best players in the NBA. From his multiple 50 point games to reaching the eastern conference finals in two out of the last four years, Tatum's skillset is only going to keep improving which is very scary for the rest of the NBA. He has proven himself to the rest of the world and everyone now knows what Jayson Tatum is capable of.
+
+The code that generated this post and these graphs can be found [here](https://github.com/Kadenross1/Notebooks/blob/main/project2.Rmd) 
